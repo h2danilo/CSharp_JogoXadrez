@@ -13,18 +13,20 @@ namespace JogoXadrez_Console
         static void Main(string[] args)
         {
             //Posicao P = new Posicao(3,4);
+            try {
+                Tabuleiro tab = new Tabuleiro(8, 8);
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
+                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(1, 3));
 
-            Tabuleiro tab = new Tabuleiro(8, 8);
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-            tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-            tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(2, 4));
+                Tela.imprimirTabuleiro(tab);
 
-            Tela.imprimirTabuleiro(tab);
-
-            //Console.WriteLine("Posição : "+P);
+                //Console.WriteLine("Posição : "+P);
+                
+            } catch (TabuleiroException e) {
+                Console.WriteLine(e.Message);
+            }
             Console.ReadLine();
-
-            
         }
     }
 }
