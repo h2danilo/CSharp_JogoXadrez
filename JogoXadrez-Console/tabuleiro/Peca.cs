@@ -8,7 +8,7 @@ namespace tabuleiro {
 
         public Peca( Tabuleiro tabuleiro, Cor cor) {
             this.posicao = null;
-            this.tab = tab;
+            this.tab = tabuleiro;
             this.cor = cor;
             this.QtdeMovimentos = 0;
 
@@ -16,6 +16,22 @@ namespace tabuleiro {
 
         public void incrementarQtdeMovimentos() {
             QtdeMovimentos++;
+        }
+
+        public bool existeMovimentosPossiveis() {
+            bool[,] mat = movimentosPossiveis();
+            for (int i=0; i < tab.linhas; i++) {
+                for (int j=0; j < tab.colunas; j++) {
+                    if (mat[i, j]) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool podeMoverPara(Posicao pos) {
+            return movimentosPossiveis()[pos.Linha, pos.Coluna];
         }
 
         public abstract bool[,] movimentosPossiveis();
